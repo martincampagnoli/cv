@@ -1774,6 +1774,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.4;
+    z-index:10;
     background: -moz-linear-gradient(
       top,
       transparent 0%,
@@ -1798,6 +1799,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.6;
+    z-index: 11;
     background-color: #000000;
   }
   
@@ -1843,6 +1845,7 @@
   .home-content__main {
     padding-top: 1rem;
     position: relative;
+    z-index:11;
   }
   
   .home-content__buttons {
