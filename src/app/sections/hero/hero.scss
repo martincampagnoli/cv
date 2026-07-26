@@ -486,8 +486,10 @@ $hair-height: clamp(72px, 10vw, 148px);
   }
 
   /* No hairline to clear here, so the download block drops to the same
-   * baseline as the mode label on the opposite corner. */
+   * baseline as the mode label on the opposite corner — and to the same inset,
+   * so the two bottom corners read as a symmetric pair. */
   .doc {
+    right: $gutter;
     bottom: clamp(26px, 4vw, 52px);
     gap: 6px;
   }
