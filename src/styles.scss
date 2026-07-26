@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-/* =================================================================== 
+/* ===================================================================
  *
  *  Glint v1.0 Base Stylesheet
  *  11-20-2017
@@ -292,7 +292,20 @@
      font-size: 62.5%;
      box-sizing: border-box;
  }
- 
+
+ /* Full-height chain the hero's `height: 100%` depends on. theme.scss loads
+  * after this and upgrades it to -webkit-fill-available where supported.
+  * app-root must be in the chain or the hero collapses to content height. */
+ html,
+ body,
+ app-root {
+     height: 100%;
+ }
+
+ app-root {
+     display: block;
+ }
+
  *,
  *::before,
  *::after {
@@ -926,4 +939,3 @@
  }
  
  
- /*# sourceMappingURL=base.css.map */

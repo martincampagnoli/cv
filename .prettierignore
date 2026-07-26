@@ -1,0 +1,8 @@
+dist
+coverage
+.angular
+package-lock.json
+src/assets
+src/styles.scss
+src/styles/theme.scss
+src/app/sections/hero/hero.scss
