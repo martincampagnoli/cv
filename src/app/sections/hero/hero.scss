@@ -236,6 +236,9 @@ $mono: 'JetBrains Mono', monospace;
   position: relative;
   width: fit-content;
   cursor: pointer;
+  /* Insurance for copy long enough to wrap anyway: split the lines evenly
+   * rather than leaving a single word stranded on the last one. */
+  text-wrap: balance;
   transition: opacity 0.8s ease;
   -webkit-tap-highlight-color: transparent;
 }
@@ -516,6 +519,15 @@ $hair-height: clamp(72px, 10vw, 148px);
 @media (max-width: 479px) {
   .links {
     flex-direction: column;
+  }
+
+  /* Each half has to hold one line. The whole hero reads as two lines = two
+   * worlds, and a phrase that wraps turns that pair into three lines, which
+   * breaks the pairing the interaction depends on. Below the width where the
+   * longer phrase still fits at 30px, scale with the viewport instead of
+   * holding the 30px floor — 30px is the ceiling here, not the floor. */
+  .tag {
+    font-size: min(6.8vw, 30px);
   }
 }
 
