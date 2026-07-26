@@ -474,9 +474,14 @@ $hair-height: clamp(72px, 10vw, 148px);
     padding-bottom: clamp(92px, 20vh, 170px);
   }
 
+  /* Natural width, never grown: growing made whatever landed alone on the last
+   * wrapped row stretch across the full width, giving the orphan more emphasis
+   * than the links above it. `min-width: auto` drops the 136px desktop floor
+   * while still refusing to shrink narrower than the label, so text can never
+   * clip. */
   .link {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 0 1 auto;
+    min-width: auto;
     padding: 15px 14px;
     letter-spacing: 0.18em;
   }
@@ -500,6 +505,17 @@ $hair-height: clamp(72px, 10vw, 148px);
     right: $gutter;
     text-align: right;
     overflow-wrap: anywhere;
+  }
+}
+
+/* Phone widths: the links stop fitting on one row here. Stack them one per row
+ * at full width rather than letting them wrap — a wrapped row leaves whichever
+ * link lands last sitting alone, which reads as a mistake. Stacking also holds
+ * however many links the data grows to, where any wrap rule is one new link
+ * away from orphaning again. */
+@media (max-width: 479px) {
+  .links {
+    flex-direction: column;
   }
 }
 
