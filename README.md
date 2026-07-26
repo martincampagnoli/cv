@@ -14,9 +14,8 @@ npm install
 ## Development
 
 ```bash
-npm run serve     # dev server on http://localhost:4200
+npm start         # dev server on http://localhost:4200
 npm run build     # production build into dist/cv/browser
-npm start         # serve the production build via Express on :8080
 ```
 
 ## Quality
@@ -26,6 +25,22 @@ npm test          # unit tests (Vitest + jsdom)
 npm run lint      # ESLint (angular-eslint) over .ts and .html
 npm run format    # Prettier
 ```
+
+## Deploy
+
+Firebase Hosting, configured in `firebase.json` (serves `dist/cv/browser`).
+
+```bash
+npm run deploy    # ng build, then firebase deploy --only hosting
+```
+
+First time on a new machine: `npx firebase-tools login` and
+`npx firebase-tools use --add` to bind the Firebase project (writes
+`.firebaserc`).
+
+Hosting is a static CDN — no Node process runs in production. Anything that
+needs a response header (redirects, caching, `X-Robots-Tag`) belongs in
+`firebase.json`, not in application code.
 
 ## Structure
 

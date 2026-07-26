@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# The CV itself should not turn up in search results. This only asks crawlers
+# not to fetch it; the authoritative control is the X-Robots-Tag header set on
+# /assets/cv in server.js, which also covers the case of the file being linked
+# from somewhere else.
+Disallow: /assets/cv/
