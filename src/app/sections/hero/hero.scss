@@ -344,6 +344,93 @@ $mono: 'JetBrains Mono', monospace;
   box-shadow: 0 0 16px rgba(79, 209, 197, 0.5);
 }
 
+/* ------------------------------------------------- contact + CV download */
+
+/* Both corners share the hairline's right inset so their right edges line up
+ * with it. */
+$rail: clamp(24px, 4.2vw, 72px);
+$hair-height: clamp(72px, 10vw, 148px);
+
+.contact {
+  position: absolute;
+  top: clamp(26px, 4vw, 52px);
+  right: $rail;
+  z-index: 7;
+  font-family: $mono;
+  font-size: clamp(10px, 0.86vw, 13px);
+  letter-spacing: 0.04em;
+  color: rgba(13, 26, 33, 0.46);
+  text-decoration: none;
+  transition: color 0.9s ease;
+}
+
+.contact:hover {
+  color: $ink;
+}
+
+.doc {
+  position: absolute;
+  right: $rail;
+  /* Sits clear of the hairline rather than at a fixed offset, so the two can
+   * never collide as the hairline scales. */
+  bottom: calc(#{$hair-height} + clamp(20px, 2.4vw, 34px));
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(8px, 0.9vw, 12px);
+  font-family: $mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.doc__meta {
+  color: rgba(13, 26, 33, 0.4);
+  transition: color 0.9s ease;
+}
+
+.doc__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(13, 26, 33, 0.62);
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.doc__link:hover,
+.doc__link:focus-visible {
+  color: $ink;
+}
+
+.doc__arrow {
+  /* The glyph carries no meaning the label does not already give. */
+  font-size: 11px;
+  line-height: 1;
+}
+
+.hero.is-deep .contact {
+  color: rgba(214, 247, 255, 0.52);
+}
+
+.hero.is-deep .contact:hover {
+  color: $foam;
+}
+
+.hero.is-deep .doc__meta {
+  color: rgba(214, 247, 255, 0.42);
+}
+
+.hero.is-deep .doc__link {
+  color: $cyan;
+}
+
+.hero.is-deep .doc__link:hover,
+.hero.is-deep .doc__link:focus-visible {
+  color: $foam;
+}
+
 .mode {
   position: absolute;
   left: $gutter;
@@ -396,6 +483,21 @@ $mono: 'JetBrains Mono', monospace;
 
   .hair {
     display: none;
+  }
+
+  /* No hairline to clear here, so the download block drops to the same
+   * baseline as the mode label on the opposite corner. */
+  .doc {
+    bottom: clamp(26px, 4vw, 52px);
+    gap: 6px;
+  }
+
+  .contact {
+    /* Long addresses would otherwise run past the gutter on narrow screens. */
+    left: $gutter;
+    right: $gutter;
+    text-align: right;
+    overflow-wrap: anywhere;
   }
 }
 

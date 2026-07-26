@@ -71,6 +71,29 @@
     </nav>
   </div>
 
+  @if (hero().email; as email) {
+    <a class="contact" [href]="'mailto:' + email">{{ email }}</a>
+  }
+
+  <div class="doc">
+    <span class="doc__meta"
+      >{{ hero().file.format }} · {{ hero().file.pages }} pages</span
+    >
+    <a
+      class="doc__link"
+      [href]="hero().file.url"
+      [attr.aria-label]="
+        'Download CV, ' +
+        hero().file.format +
+        ', ' +
+        hero().file.pages +
+        ' pages'
+      "
+      download
+      ><span class="doc__arrow" aria-hidden="true">↓</span> Download CV</a
+    >
+  </div>
+
   <div class="hair" aria-hidden="true"></div>
   <div class="mode" aria-live="polite">{{ mode() }}</div>
 </section>

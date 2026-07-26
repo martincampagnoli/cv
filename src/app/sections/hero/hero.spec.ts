@@ -133,6 +133,43 @@ describe('HeroSection', () => {
     );
   });
 
+  it('links the CV download with its format and page count', () => {
+    const link = el.querySelector<HTMLAnchorElement>('.doc__link')!;
+    expect(link.getAttribute('href')).toBe(CV.hero.file.url);
+    expect(link.hasAttribute('download')).toBe(true);
+    // The arrow is decorative, so the label has to carry the meaning itself.
+    expect(link.getAttribute('aria-label')).toContain('Download CV');
+    expect(link.getAttribute('aria-label')).toContain(
+      String(CV.hero.file.pages),
+    );
+
+    const meta = el.querySelector('.doc__meta')!.textContent ?? '';
+    expect(meta).toContain(CV.hero.file.format);
+    expect(meta).toContain(String(CV.hero.file.pages));
+  });
+
+  it('renders the contact address as a mailto link', () => {
+    const contact = el.querySelector<HTMLAnchorElement>('.contact');
+    if (!CV.hero.email) {
+      // Deliberate: no address configured means no line at all, never a
+      // placeholder.
+      expect(contact).toBeNull();
+      return;
+    }
+    expect(contact?.textContent?.trim()).toBe(CV.hero.email);
+    expect(contact?.getAttribute('href')).toBe(`mailto:${CV.hero.email}`);
+  });
+
+  it('hides the contact line when no address is configured', async () => {
+    const noEmail = { ...CV.hero };
+    delete (noEmail as { email?: string }).email;
+    fixture.componentRef.setInput('hero', noEmail);
+    await settle();
+    expect(el.querySelector('.contact')).toBeNull();
+    // The download block is unconditional and must survive.
+    expect(el.querySelector('.doc__link')).not.toBeNull();
+  });
+
   it('builds a stable field of 32 motes', () => {
     expect(el.querySelectorAll('.mote').length).toBe(32);
     const first = el.querySelector<HTMLElement>('.mote')!.style.left;

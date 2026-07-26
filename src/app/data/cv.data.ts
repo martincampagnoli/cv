@@ -29,10 +29,10 @@ export const CV: Cv = {
     surface: [
       { key: 'role', value: "'Senior Frontend Developer'" },
       { key: 'stack', value: "['Angular', 'TypeScript', 'Signals']" },
-      { key: 'years', value: '8' },
+      { key: 'years', value: '10+' },
       { key: 'builds', value: "'design systems that hold up'" },
       { key: 'writes', value: "'tests, always'" },
-      { key: 'city', value: "'Utrecht'" },
+      { key: 'city', value: "'Utrecht, NL'" },
     ],
     deep: [
       { key: 'cert', value: "'Diving Instructor'" },
@@ -42,5 +42,11 @@ export const CV: Cv = {
       { key: 'water', value: "'cold, green, worth it'" },
       { key: 'next', value: "'a wreck at 72 m'" },
     ],
+    email: 'martin.campagnoli@hotmail.com.ar',
+    file: {
+      url: 'assets/cv/martin-campagnoli-cv.pdf',
+      format: 'PDF',
+      pages: 2,
+    },
   },
 };
