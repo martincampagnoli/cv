@@ -8,7 +8,8 @@
 
       <h1>
         @for (line of hero().tagline; track line; let last = $last) {
-          {{ line }}@if (!last) {
+          {{ line }}
+          @if (!last) {
             <br />
           }
         }
