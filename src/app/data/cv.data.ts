@@ -6,14 +6,41 @@ export const CV: Cv = {
     tagline: ['Developer on the surface', 'Diver in the deeps'],
     links: [
       {
-        label: 'Instagram',
-        url: 'https://www.instagram.com/martin.campagnoli',
-      },
-      {
         label: 'Linkedin',
         url: 'https://www.linkedin.com/in/martincampagnoli',
+        world: 'surface',
       },
-      { label: 'Github', url: 'https://github.com/martincampagnoli' },
+      {
+        label: 'Github',
+        url: 'https://github.com/martincampagnoli',
+        world: 'surface',
+      },
+      {
+        label: 'Instagram',
+        url: 'https://www.instagram.com/martin.campagnoli',
+        world: 'deep',
+      },
+      {
+        label: 'Frey Dive',
+        url: 'https://freydive.com',
+        world: 'deep',
+      },
+    ],
+    surface: [
+      { key: 'role', value: "'Senior Frontend Developer'" },
+      { key: 'stack', value: "['Angular', 'TypeScript', 'Signals']" },
+      { key: 'years', value: '8' },
+      { key: 'builds', value: "'design systems that hold up'" },
+      { key: 'writes', value: "'tests, always'" },
+      { key: 'city', value: "'Utrecht'" },
+    ],
+    deep: [
+      { key: 'cert', value: "'Diving Instructor'" },
+      { key: 'logged', value: '163' },
+      { key: 'max', value: "'60 m'" },
+      { key: 'gas', value: "['air', 'EAN32', 'trimix']" },
+      { key: 'water', value: "'cold, green, worth it'" },
+      { key: 'next', value: "'a wreck at 72 m'" },
     ],
   },
 };

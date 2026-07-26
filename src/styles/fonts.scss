@@ -1,0 +1,63 @@
+/* Weight-mapped faces for the hero.
+ *
+ * assets/css/fonts.css declares the legacy per-weight families
+ * ("montserrat-medium" etc., each at font-weight:normal). The hero addresses
+ * type the normal way — one family, real weights — so the same local files are
+ * re-declared here under a single `Montserrat` family.
+ *
+ * JetBrains Mono is self-hosted (OFL, see assets/fonts/jetbrains-mono/LICENSE.txt);
+ * only the two weights the design uses are shipped. */
+
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    url('../assets/fonts/montserrat/montserrat-regular-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/montserrat/montserrat-regular-webfont.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    url('../assets/fonts/montserrat/montserrat-medium-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/montserrat/montserrat-medium-webfont.woff')
+      format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src:
+    url('../assets/fonts/montserrat/montserrat-semibold-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/montserrat/montserrat-semibold-webfont.woff')
+      format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2')
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2')
+    format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

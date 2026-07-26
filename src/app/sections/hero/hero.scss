@@ -1,471 +1,409 @@
-/* Custom elements are inline by default, which would break the width and
-   full-height chains .s-home relies on. */
+/* Hero — Surface & Deep.
+ *
+ * Two states driven by the tagline. `.is-deep` on the section is the only
+ * switch; every visual change below hangs off it, so nothing is styled
+ * imperatively from the component.
+ *
+ * Shared transition vocabulary:
+ *   state cross-fade  1.1s cubic-bezier(.4, 0, .2, 1)
+ *   colour shift       .9s ease
+ *   opacity dim        .8s ease
+ *   button fill        .4s ease
+ */
+
+$ink: #0d1a21;
+$foam: #eef9ff;
+$cyan: #4fd1c5;
+
+$ease-state: cubic-bezier(0.4, 0, 0.2, 1);
+
+$gutter: clamp(28px, 7.5vw, 132px);
+
+$sans: 'Montserrat', sans-serif;
+$mono: 'JetBrains Mono', monospace;
+
 :host {
   display: block;
-  height: 100%;
 }
 
-/* ===================================================================
-   * # home
-   *
-   * ------------------------------------------------------------------- */
-.s-home {
-  width: 100%;
-  height: 100% !important;
-  background-color: transparent;
+.hero {
   position: relative;
-  display: table;
-}
-
-.s-home .shadow-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  opacity: 0.4;
-  z-index: 10;
-  background: -moz-linear-gradient(
-    top,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-  background: -webkit-linear-gradient(
-    top,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-}
-
-.s-home .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
-  z-index: 11;
-  background-color: #000000;
-}
-
-.no-js .s-home {
-  background: #000000;
-}
-
-/* ------------------------------------------------------------------- 
-   * ## home content
-   * ------------------------------------------------------------------- */
-.home-content {
-  display: table-cell;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
-  padding-bottom: 0rem;
-  position: relative;
+  height: 100dvh;
   overflow: hidden;
-  background-image: url("../../../assets/images/hero-bg.jpg");
-  background-size: cover;
+  font-family: $sans;
+  -webkit-font-smoothing: antialiased;
 }
 
-.home-content h3 {
-  font-family: "montserrat-medium", sans-serif;
-  font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.3rem;
-  position: relative;
-  margin-top: 0;
-  margin-bottom: 1.2rem;
-  margin-left: 6px;
-}
+/* ------------------------------------------------------------------ plate */
 
-.home-content h1 {
-  font-family: "montserrat-medium", sans-serif;
-  font-size: 5rem;
-  line-height: 1.333;
-  margin-top: 0;
-  color: #ffffff;
-}
-
-.home-content__main {
-  padding-top: 1rem;
-  position: relative;
-  z-index: 11;
-}
-
-.home-content__buttons {
-  padding-top: 6rem;
-  text-align: left;
-}
-
-.home-content__buttons .btn {
-  width: 150px;
-  border-color: #ffffff;
-  color: #ffffff;
-  margin: 1.5rem 1.5rem 0 0;
-  letter-spacing: 0.25rem;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-.home-content__buttons .btn:last-child {
-  margin-right: 0;
-}
-
-.home-content__buttons .btn:hover,
-.home-content__buttons .btn:focus {
-  background: #ffffff !important;
-  color: #000000;
-}
-
-.home-content__scroll {
+.plate {
   position: absolute;
-  right: 9.5rem;
-  bottom: 8.4rem;
+  inset: 0;
+  background: linear-gradient(172deg, #f6fafb 0%, #e8f0f3 52%, #d8e5ea 100%);
 }
 
-.home-content__scroll a {
-  font-family: "montserrat-semibold", sans-serif;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3rem;
-  color: #ffffff;
-  position: relative;
-  display: inline-block;
-  line-height: 3rem;
-  padding-left: 2.5rem;
+.deep {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(
+    178deg,
+    #0c5372 0%,
+    #083b56 24%,
+    #05263b 54%,
+    #02131e 82%,
+    #000a11 100%
+  );
+  transition: opacity 1.1s $ease-state;
 }
 
-.home-content__scroll a::before {
-  border-bottom: 2px solid #39b54a;
-  border-right: 2px solid #39b54a;
-  content: "";
-  display: block;
-  height: 8px;
-  width: 8px;
-  margin-top: -6px;
+.hero.is-deep .deep {
+  opacity: 1;
+}
+
+/* ------------------------------------------------- the code IS the background */
+
+.code {
+  position: absolute;
+  inset: 0;
+  padding: clamp(24px, 3vw, 50px) clamp(24px, 4vw, 64px);
+  font-family: $mono;
+  font-size: clamp(10px, 0.86vw, 13px);
+  font-weight: 400;
+  line-height: 2.4;
+  color: $ink;
+  opacity: 0.17;
   pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 58%,
+    transparent 92%
+  );
+  mask-image: linear-gradient(180deg, #000 0%, #000 58%, transparent 92%);
+  transition:
+    opacity 1.1s ease,
+    transform 1.3s $ease-state;
+}
+
+/* Only the facet lines carry significant leading whitespace, and their text
+ * comes from interpolation — so `pre` is scoped to them. The brace lines are
+ * written in the template, where a reformat could otherwise inject an indent
+ * that `pre` would then render. */
+.code__line {
+  white-space: pre;
+}
+
+.code b {
+  font-weight: 500;
+  opacity: 0.65;
+}
+
+/* Reproduces the blank line between the two object literals. */
+.code__block + .code__block {
+  margin-top: 2.4em;
+}
+
+.hero.is-deep .code {
+  opacity: 0;
+  transform: translateY(-22px);
+}
+
+/* --------------------------------------- underwater light, deep state only */
+
+.light {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+}
+
+.hero.is-deep .light {
+  opacity: 1;
+}
+
+.rays {
+  position: absolute;
+  inset: -24% -12% 30% -12%;
+  background: repeating-linear-gradient(
+    96deg,
+    transparent 0 44px,
+    rgba(190, 235, 255, 0.055) 44px 58px,
+    transparent 58px 118px
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000,
+    rgba(0, 0, 0, 0.4) 48%,
+    transparent 84%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    #000,
+    rgba(0, 0, 0, 0.4) 48%,
+    transparent 84%
+  );
+  animation: sway 24s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: translateX(0) skewX(0);
+  }
+  50% {
+    transform: translateX(-28px) skewX(1.2deg);
+  }
+}
+
+.vig {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 44% 6%,
+    transparent 34%,
+    rgba(0, 4, 9, 0.7) 100%
+  );
+}
+
+.mote {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(214, 247, 255, 0.5);
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.6;
+  }
+  84% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-180px) translateX(16px);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- content */
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 $gutter;
+  /* Keeps long tagline lines clear of the hairline. */
+  padding-right: clamp(70px, 10vw, 180px);
+}
+
+.name {
+  font-family: $sans;
+  font-size: clamp(10px, 1.05vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 33, 0.46);
+  margin-bottom: clamp(14px, 1.6vw, 22px);
+  transition: color 0.9s ease;
+}
+
+.tag {
+  margin: 0;
+  /* Set explicitly: the global theme targets `h1` by element, which would
+   * otherwise beat inheritance from .hero and pull in the legacy
+   * single-weight "montserrat-medium" family. */
+  font-family: $sans;
+  font-size: clamp(30px, 5.4vw, 76px);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.02em;
+  color: $ink;
+  transition: color 0.9s ease;
+}
+
+.half {
+  display: block;
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.half::after {
+  content: '';
   position: absolute;
   left: 0;
-  top: 50%;
-  -webkit-transform-origin: 66% 66%;
-  -ms-transform-origin: 66% 66%;
-  transform-origin: 66% 66%;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
-
-.home-content__line {
-  display: block;
-  width: 2px;
-  height: 10.2rem;
-  background-color: #39b54a;
-  position: absolute;
-  right: 7.2rem;
-  bottom: 0;
-}
-
-/* ------------------------------------------------------------------- 
-   * ## home social 
-   * ------------------------------------------------------------------- */
-.home-social {
-  font-family: "montserrat-regular", sans-serif;
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  right: 5.4rem;
-  -webkit-transform: translate3d(0, -50%, 0);
-  -ms-transform: translate3d(0, -50%, 0);
-  transform: translate3d(0, -50%, 0);
-}
-
-.home-social a {
-  color: white;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-.home-social li {
-  position: relative;
-  padding: 0.9rem 0;
-}
-
-.home-social li a {
-  display: block;
-  width: 33px;
-  height: 33px;
-}
-
-.home-social i,
-.home-social span {
-  position: absolute;
-  top: 0;
-  line-height: 33px;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-.home-social i {
-  font-size: 14px;
   right: 0;
+  bottom: -0.14em;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.2);
+  transform-origin: 0 50%;
+  transition:
+    opacity 0.5s ease,
+    transform 0.7s $ease-state;
+}
+
+.half.is-on::after {
+  opacity: 0.38;
+  transform: scaleX(1);
+}
+
+.half.is-off {
+  opacity: 0.24;
+}
+
+.links {
+  display: flex;
+  gap: clamp(10px, 1.1vw, 16px);
+  margin-top: clamp(30px, 5vw, 68px);
+  flex-wrap: wrap;
+}
+
+.link {
+  font-family: $sans;
+  font-size: clamp(9px, 0.82vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: $ink;
+  text-decoration: none;
+  border: 1px solid rgba(13, 26, 33, 0.38);
+  padding: 15px 28px;
+  min-width: 136px;
   text-align: center;
-  display: inline-block;
-  width: 33px;
-  height: 33px;
-  line-height: calc(33px - 4px);
-  border: 2px solid #ffffff;
+  transition:
+    color 0.8s ease,
+    border-color 0.8s ease,
+    background-color 0.4s ease,
+    opacity 0.8s ease;
+}
+
+.link:hover {
+  background: $ink;
+  color: #f6fafb;
+  border-color: $ink;
+}
+
+.link.is-muted {
+  opacity: 0.38;
+}
+
+/* ------------------------------------------------------ deep-state inversions */
+
+.hero.is-deep .tag {
+  color: $foam;
+}
+
+.hero.is-deep .name {
+  color: rgba(214, 247, 255, 0.52);
+}
+
+.hero.is-deep .link {
+  color: $foam;
+  border-color: rgba(214, 247, 255, 0.5);
+}
+
+.hero.is-deep .link:hover {
+  background: $foam;
+  color: #02131e;
+  border-color: $foam;
+}
+
+/* --------------------------------------------------- hairline + mode label */
+
+.hair {
+  position: absolute;
+  right: clamp(24px, 4.2vw, 72px);
+  bottom: 0;
+  z-index: 7;
+  width: 2px;
+  height: clamp(72px, 10vw, 148px);
+  background: $ink;
+  opacity: 0.3;
+  transition:
+    background-color 0.9s ease,
+    opacity 0.9s ease;
+}
+
+.hero.is-deep .hair {
+  background: $cyan;
+  opacity: 1;
+  box-shadow: 0 0 16px rgba(79, 209, 197, 0.5);
+}
+
+.mode {
+  position: absolute;
+  left: $gutter;
+  bottom: clamp(26px, 4vw, 52px);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 33, 0.4);
+  transition: color 0.9s ease;
+}
+
+.mode::before {
+  content: '';
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
+  background: currentColor;
 }
 
-.home-social span {
-  color: #39b54a;
-  right: 4.5rem;
-  font-size: 1.3rem;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: 100% 50%;
-  -ms-transform-origin: 100% 50%;
-  transform-origin: 100% 50%;
+.hero.is-deep .mode {
+  color: $cyan;
 }
 
-.home-social li:hover span {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-}
+/* ------------------------------------------------------------- responsive */
 
-/* animate .home-content__main
-   * ------------------------------------------------------------------- */
-html.cl-preload .home-content__main {
-  opacity: 0;
-}
+@media (max-width: 760px) {
+  .code {
+    font-size: 11px;
+    line-height: 2.3;
+    opacity: 0.12;
+  }
 
-html.cl-loaded .home-content__main {
-  animation-duration: 2s;
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}
+  .content {
+    justify-content: flex-end;
+    padding-right: $gutter;
+    padding-bottom: clamp(92px, 20vh, 170px);
+  }
 
-html.no-csstransitions .home-content__main {
-  opacity: 1;
-}
+  .link {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 15px 14px;
+    letter-spacing: 0.18em;
+  }
 
-/* ------------------------------------------------------------------- 
-   * ## home animations
-   * ------------------------------------------------------------------- */
-
-/* fade in */
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 150%, 0);
-    -ms-transform: translate3d(0, 150%, 0);
-    transform: translate3d(0, 150%, 0);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 150%, 0);
-    -ms-transform: translate3d(0, 150%, 0);
-    transform: translate3d(0, 150%, 0);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* fade out */
-
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -150%, 0);
-    -ms-transform: translate3d(0, -150%, 0);
-    transform: translate3d(0, -150%, 0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -150%, 0);
-    -ms-transform: translate3d(0, -150%, 0);
-    transform: translate3d(0, -150%, 0);
-  }
-}
-
-/* ------------------------------------------------------------------- 
-   * responsive:
-   * home
-   * ------------------------------------------------------------------- */
-@media only screen and (max-width: 1500px) {
-  .home-content h1 {
-    font-size: 6rem;
-  }
-  .home-content__main {
-    max-width: 1000px;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .home-content h1 {
-    font-size: 5.5rem;
-  }
-  .home-content__main {
-    max-width: 800px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .home-content h1 {
-    font-size: 4.6rem;
-  }
-  .home-content br {
-    display: none;
-  }
-  .home-content__main {
-    padding-top: 21rem;
-    padding-right: 80px;
-    max-width: 680px;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .home-content h3 {
-    font-size: 1.5rem;
-  }
-  .home-content h1 {
-    font-size: 4rem;
-  }
-  .home-content__main {
-    padding-right: 70px;
-    max-width: 550px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .home-content__main {
-    max-width: 490px;
-  }
-  .home-content__buttons {
-    padding-top: 1.2rem;
-    text-align: center;
-  }
-  .home-content__buttons .btn {
-    display: block;
-    width: 70%;
-    margin: 1.5rem 0 0 0;
-  }
-  .home-social {
-    right: 4rem;
-  }
-  .home-content__scroll {
-    right: 7.5rem;
-  }
-  .home-content__line {
-    right: 5.5rem;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .home-content h1 {
-    font-size: 3.8rem;
-  }
-  .home-social {
-    right: 2rem;
-  }
-  .home-social li {
-    padding: 0.6rem 0;
-  }
-  .home-social i {
-    font-size: 17px;
-    border: none;
-  }
-  .home-social span {
-    display: none;
-  }
-  .home-content__scroll {
-    bottom: 5.4rem;
-  }
-  .home-content__line {
-    height: 7.2rem;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .s-home {
-    min-height: 642px;
-  }
-  .home-content h1 {
-    font-size: 3.5rem;
-  }
-  .home-content__main {
-    text-align: center;
-    max-width: none;
-    padding-top: 15rem;
-    padding-right: 25px;
-    width: 85%;
-  }
-  .home-content__buttons {
-    padding-top: 1.2rem;
-  }
-  .home-content__buttons .btn {
-    width: auto;
-    margin: 1.5rem 0 0 0;
-  }
-  .home-social {
+  .hair {
     display: none;
   }
 }
 
-@media only screen and (max-width: 450px) {
-  .home-content h1 {
-    font-size: 3.3rem;
+/* The ambient loops go; the state cross-fade stays. It is user-initiated and
+ * carries the meaning of the interaction. */
+@media (prefers-reduced-motion: reduce) {
+  .rays,
+  .mote {
+    animation: none;
   }
 }
-
-@media only screen and (max-width: 400px) {
-  .s-home {
-    min-height: 630px;
-  }
-  .home-content h1 {
-    font-size: 3.2rem;
-  }
-  .home-content__main {
-    padding-top: 16.2rem;
-    width: auto;
-  }
-}
-

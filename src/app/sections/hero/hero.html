@@ -1,34 +1,76 @@
-<section id="home" class="s-home target-section">
-  <div class="overlay"></div>
-  <div class="shadow-overlay"></div>
+<section class="hero" [class.is-deep]="deep()">
+  <div class="plate"></div>
+  <div class="deep"></div>
 
-  <div class="home-content">
-    <div class="row home-content__main">
-      <h3>{{ hero().name }}</h3>
-
-      <h1>
-        @for (line of hero().tagline; track line; let last = $last) {
-          {{ line }}
-          @if (!last) {
-            <br />
-          }
+  <div class="code" aria-hidden="true">
+    @for (block of codeBlocks(); track block.name) {
+      <div class="code__block">
+        <div class="code__brace">
+          const <b>{{ block.name }}</b> = &#123;
+        </div>
+        @for (line of block.lines; track line.key) {
+          <div class="code__line">{{ line.text }}</div>
         }
-      </h1>
-
-      <div class="home-content__buttons">
-        @for (link of hero().links; track link.url) {
-          <a
-            [href]="link.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn--stroke"
-          >
-            {{ link.label }}
-          </a>
-        }
+        <div class="code__brace">&#125;;</div>
       </div>
-    </div>
-
-    <div class="home-content__line"></div>
+    }
   </div>
+
+  <div class="light" aria-hidden="true">
+    <div class="rays"></div>
+    <div class="vig"></div>
+    @for (mote of motes; track $index) {
+      <div
+        class="mote"
+        [style.left]="mote.left"
+        [style.top]="mote.top"
+        [style.width]="mote.size"
+        [style.height]="mote.size"
+        [style.opacity]="mote.opacity"
+        [style.animationDuration]="mote.duration"
+        [style.animationDelay]="mote.delay"
+      ></div>
+    }
+  </div>
+
+  <div class="content">
+    <div class="name">{{ hero().name }}</div>
+
+    <h1 class="tag" (mouseleave)="relax()">
+      @for (line of hero().tagline; track line; let i = $index) {
+        <span
+          class="half"
+          role="button"
+          tabindex="0"
+          [class.is-on]="deep() === (i === 1)"
+          [class.is-off]="deep() !== (i === 1)"
+          [attr.aria-label]="
+            i === 1 ? 'Show the deep side' : 'Show the surface side'
+          "
+          (mouseenter)="previewWorld(i === 1)"
+          (focus)="setWorld(i === 1)"
+          (click)="lockWorld($event, i === 1)"
+          (keydown.enter)="lockWorld($event, i === 1)"
+          (keydown.space)="lockWorld($event, i === 1)"
+          >{{ line }}</span
+        >
+      }
+    </h1>
+
+    <nav class="links">
+      @for (link of hero().links; track link.url) {
+        <a
+          class="link"
+          [class.is-muted]="(link.world === 'deep') !== deep()"
+          [href]="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ link.label }}</a
+        >
+      }
+    </nav>
+  </div>
+
+  <div class="hair" aria-hidden="true"></div>
+  <div class="mode" aria-live="polite">{{ mode() }}</div>
 </section>

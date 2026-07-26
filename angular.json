@@ -34,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles/fonts.scss",
               "src/styles.scss",
               "src/styles/theme.scss"
             ],
