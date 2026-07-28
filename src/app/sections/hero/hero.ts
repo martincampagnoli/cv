@@ -75,6 +75,15 @@ export class HeroSection {
     { name: 'deep', lines: toLines(this.hero().deep) },
   ]);
 
+  /** Displayed with `[at]`/`[dot]` so scrapers can't lift a plain address
+   * out of the markup; the real address only gets assembled on click. */
+  readonly emailDisplay = computed(() => {
+    const email = this.hero().email;
+    if (!email) return null;
+    const [user, domain] = email.split('@');
+    return `${user} [at] ${domain.replace(/\./g, ' [dot] ')}`;
+  });
+
   setWorld(deep: boolean, lock = false): void {
     if (lock) this.locked.set(true);
     else if (this.locked()) return;
@@ -94,6 +103,12 @@ export class HeroSection {
   lockWorld(event: Event, deep: boolean): void {
     event.preventDefault();
     this.setWorld(deep, true);
+  }
+
+  openEmail(event: Event): void {
+    event.preventDefault();
+    const email = this.hero().email;
+    if (email) window.location.href = `mailto:${email}`;
   }
 }
 

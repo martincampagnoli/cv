@@ -71,8 +71,8 @@
     </nav>
   </div>
 
-  @if (hero().email; as email) {
-    <a class="contact" [href]="'mailto:' + email">{{ email }}</a>
+  @if (emailDisplay(); as email) {
+    <a class="contact" href="#" (click)="openEmail($event)">{{ email }}</a>
   }
 
   <div class="doc">

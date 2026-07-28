@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { vi } from 'vitest';
 import { HeroSection } from './hero';
 import { CV } from '../../data/cv.data';
 
@@ -148,7 +149,7 @@ describe('HeroSection', () => {
     expect(meta).toContain(String(CV.hero.file.pages));
   });
 
-  it('renders the contact address as a mailto link', () => {
+  it('renders the contact address obfuscated, assembled only on click', () => {
     const contact = el.querySelector<HTMLAnchorElement>('.contact');
     if (!CV.hero.email) {
       // Deliberate: no address configured means no line at all, never a
@@ -156,8 +157,21 @@ describe('HeroSection', () => {
       expect(contact).toBeNull();
       return;
     }
-    expect(contact?.textContent?.trim()).toBe(CV.hero.email);
-    expect(contact?.getAttribute('href')).toBe(`mailto:${CV.hero.email}`);
+    const [user, domain] = CV.hero.email.split('@');
+    const expectedDisplay = `${user} [at] ${domain.replace(/\./g, ' [dot] ')}`;
+    expect(contact?.textContent?.trim()).toBe(expectedDisplay);
+    // The raw address must never sit in the markup, only in the click handler.
+    expect(contact?.getAttribute('href')).not.toContain(CV.hero.email);
+
+    const setHref = vi.fn();
+    vi.spyOn(window, 'location', 'get').mockReturnValue({
+      set href(value: string) {
+        setHref(value);
+      },
+    } as Location);
+
+    contact?.dispatchEvent(new MouseEvent('click'));
+    expect(setHref).toHaveBeenCalledWith(`mailto:${CV.hero.email}`);
   });
 
   it('hides the contact line when no address is configured', async () => {
