@@ -1,0 +1,27 @@
+@use '../ui';
+
+:host {
+  display: block;
+  padding-top: clamp(32px, 7vw, 80px);
+}
+
+.thanks {
+  max-width: 680px;
+}
+
+.next {
+  margin: 28px 0 32px;
+  padding: 0 0 0 20px;
+  font-size: 15px;
+  color: var(--ink-2);
+
+  li {
+    padding: 0 0 0 6px;
+    margin-bottom: 12px;
+  }
+
+  b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+}

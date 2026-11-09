@@ -1,0 +1,29 @@
+<div class="frame">
+  <header class="bar">
+    <a
+      class="brand"
+      routerLink="/"
+      aria-label="Martín Campagnoli, back to the CV"
+    >
+      Martín Campagnoli
+    </a>
+    <nav class="nav" aria-label="Lessons">
+      <a class="nav__link" routerLink="/lessons">Lessons</a>
+      <a class="cta cta--solid cta--sm" routerLink="/lessons/book">Book</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <router-outlet />
+  </main>
+
+  <footer class="foot">
+    <p class="foot__privacy">{{ lessons.privacy }}</p>
+    <div class="foot__row">
+      @if (emailDisplay(); as email) {
+        <a class="foot__mail" href="#" (click)="mail($event)">{{ email }}</a>
+      }
+      <span class="foot__copy">© {{ year }} · <a routerLink="/">CV</a></span>
+    </div>
+  </footer>
+</div>

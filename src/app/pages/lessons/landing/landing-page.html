@@ -1,0 +1,107 @@
+<section class="intro">
+  <div class="intro__text">
+    <p class="eyebrow">{{ lessons.eyebrow }}</p>
+    <h1 class="headline">
+      @for (line of lessons.headline; track line; let i = $index) {
+        <span class="headline__line" [class.is-quiet]="i > 0">{{ line }}</span>
+      }
+    </h1>
+    <p class="lead">{{ lessons.intro }}</p>
+    <div class="actions">
+      <a class="cta cta--solid" routerLink="/lessons/book"
+        >Book a free intro call</a
+      >
+      <a class="cta" routerLink="/lessons" fragment="how">How it works</a>
+    </div>
+  </div>
+
+  <div class="code" aria-hidden="true">
+    <div class="code__brace">const <b>lesson</b> = &#123;</div>
+    @for (line of codeLines(); track line) {
+      <div class="code__line">{{ line }}</div>
+    }
+    <div class="code__brace">&#125;;</div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="topics-title">
+  <p class="eyebrow">// what we can work on</p>
+  <h2 class="title" id="topics-title">Topics</h2>
+  <div class="grid grid--3">
+    @for (topic of lessons.topics; track topic.title) {
+      <article class="card topic">
+        <h3 class="topic__title">{{ topic.title }}</h3>
+        <p class="topic__body">{{ topic.body }}</p>
+        <ul class="chips">
+          @for (tag of topic.tags; track tag) {
+            <li>{{ tag }}</li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="block" id="how" aria-labelledby="how-title">
+  <p class="eyebrow">// three steps</p>
+  <h2 class="title" id="how-title">How it works</h2>
+  <ol class="steps">
+    @for (step of lessons.steps; track step.title; let i = $index) {
+      <li class="step">
+        <span class="step__n">0{{ i + 1 }}</span>
+        <h3 class="step__title">{{ step.title }}</h3>
+        <p class="step__body">{{ step.body }}</p>
+      </li>
+    }
+  </ol>
+</section>
+
+<section class="block" aria-labelledby="offers-title">
+  <p class="eyebrow">// book</p>
+  <h2 class="title" id="offers-title">Sessions</h2>
+  <div class="grid grid--2">
+    @for (offer of lessons.offers; track offer.slug) {
+      <article class="card offer" [class.is-primary]="offer.primary">
+        <div class="offer__head">
+          <h3 class="offer__title">{{ offer.title }}</h3>
+          <span class="offer__meta"
+            >{{ offer.minutes }} min{{
+              offer.price ? ' · ' + offer.price : ''
+            }}</span
+          >
+        </div>
+        <p class="offer__body">{{ offer.body }}</p>
+        <a
+          class="cta"
+          [class.cta--solid]="offer.primary"
+          routerLink="/lessons/book"
+          [queryParams]="{ type: offer.slug }"
+          >Pick a time</a
+        >
+      </article>
+    }
+  </div>
+  <ul class="policy">
+    @for (rule of lessons.policy; track rule) {
+      <li>{{ rule }}</li>
+    }
+  </ul>
+</section>
+
+<section class="block" aria-labelledby="faq-title">
+  <p class="eyebrow">// questions</p>
+  <h2 class="title" id="faq-title">FAQ</h2>
+  <div class="faq">
+    @for (item of lessons.faq; track item.question) {
+      <details class="faq__item">
+        <summary class="faq__q">{{ item.question }}</summary>
+        <p class="faq__a">{{ item.answer }}</p>
+      </details>
+    }
+  </div>
+</section>
+
+<section class="band">
+  <h2 class="band__title">Start with a free 20-minute call.</h2>
+  <a class="cta cta--solid" routerLink="/lessons/book">Book a lesson</a>
+</section>

@@ -1,0 +1,59 @@
+<section class="head">
+  <p class="eyebrow">// book a lesson</p>
+  <h1 class="title">Pick a time</h1>
+  <p class="lead">
+    Choose a session and a free slot. Your request is held for you and I confirm
+    it by hand, usually within a day, with the Google Meet link.
+  </p>
+</section>
+
+<div class="offers" role="group" aria-label="Session type">
+  @for (offer of lessons.offers; track offer.slug) {
+    <button
+      type="button"
+      class="offer"
+      [class.is-on]="offer.slug === selected().slug"
+      [attr.aria-pressed]="offer.slug === selected().slug"
+      (click)="pick(offer)"
+    >
+      <span class="offer__title">{{ offer.title }}</span>
+      <span class="offer__meta"
+        >{{ offer.minutes }} min{{
+          offer.price ? ' · ' + offer.price : ''
+        }}</span
+      >
+    </button>
+  }
+</div>
+<p class="offer-body">{{ selected().body }}</p>
+
+@if (lessons.cal) {
+  <div class="cal">
+    @for (offer of lessons.offers; track offer.slug) {
+      <div
+        #calSlot
+        class="cal__slot"
+        [attr.data-slug]="offer.slug"
+        [hidden]="offer.slug !== selected().slug"
+      ></div>
+    }
+  </div>
+} @else {
+  <div class="card fallback">
+    <h2 class="fallback__title">Online booking opens soon</h2>
+    <p class="fallback__body">
+      Until then, send me a message with two or three times that suit you and
+      what you'd like to work on, and I'll reply with a confirmation.
+    </p>
+    @if (emailDisplay(); as email) {
+      <a class="cta cta--solid" href="#" (click)="mail($event)">{{ email }}</a>
+    }
+  </div>
+}
+
+<ul class="policy">
+  @for (rule of lessons.policy; track rule) {
+    <li>{{ rule }}</li>
+  }
+</ul>
+<p class="back"><a routerLink="/lessons">← About the lessons</a></p>

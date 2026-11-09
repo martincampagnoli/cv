@@ -1,0 +1,164 @@
+@use '../ui';
+
+:host {
+  display: block;
+  padding-top: clamp(24px, 5vw, 56px);
+}
+
+.head {
+  margin-bottom: 28px;
+}
+
+/* --------------------------------------------------------- offer picker */
+
+.offers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+// Reset the legacy global `button` (grey fill, uppercase, fixed height,
+// margin) explicitly: every one of those would otherwise leak in.
+.offer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  height: auto;
+  min-width: 180px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: var(--card);
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  &.is-on {
+    border-color: var(--ink);
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+}
+
+.offer__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.offer__meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.offer-body {
+  margin: 14px 0 24px;
+  max-width: 62ch;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+/* -------------------------------------------------------------- calendar */
+
+.cal {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  overflow: hidden;
+}
+
+// The embed sizes its own iframe; this just reserves room so the page does
+// not jump while it loads.
+.cal__slot {
+  min-height: 560px;
+  width: 100%;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.fallback {
+  max-width: 640px;
+}
+
+.fallback__title {
+  margin: 0 0 8px;
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.fallback__body {
+  margin: 0 0 20px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.fallback .cta {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 13px;
+  word-break: break-all;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* ----------------------------------------------------------------- notes */
+
+.policy {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--ink-3);
+
+  li {
+    position: relative;
+    padding: 0 0 0 18px;
+
+    &::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+.back {
+  margin: 24px 0 0;
+  font-size: 14px;
+
+  a {
+    color: var(--ink-2);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--ink);
+    }
+  }
+}

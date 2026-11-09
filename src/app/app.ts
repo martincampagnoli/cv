@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { CV } from './data/cv.data';
-import { HeroSection } from './sections/hero/hero';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [HeroSection],
-  templateUrl: './app.html',
+  imports: [RouterOutlet],
+  template: '<router-outlet />',
 })
-export class App {
-  protected readonly cv = CV;
-}
+export class App {}
