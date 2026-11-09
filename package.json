@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && node scripts/route-meta.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "format:check": "prettier --check \"src/**/*.{ts,html,scss}\"",
-    "deploy": "ng build && npx --yes firebase-tools deploy --only hosting"
+    "deploy": "npm run build && npx --yes firebase-tools deploy --only hosting"
   },
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0",
