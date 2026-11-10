@@ -87,9 +87,10 @@ export const LESSONS: Lessons = {
   ],
   privacy:
     'Your name, email and phone number are used only to arrange and confirm your lessons. Ask and they are deleted.',
-  // Set once the Cal.com account exists; until then the booking page shows an
-  // email contact instead of an embed that would 404.
-  //   cal: { username: 'martincampagnoli', brand: '#0d1a21' },
+  // Cal.com account. Event type slugs must match the offer slugs above
+  // (cal.com/martincampagnoli/intro-call, …/coding-lesson). Remove this line
+  // and the booking page falls back to an email contact.
+  cal: { username: 'martincampagnoli', brand: '#0d1a21' },
   email: CV.hero.email,
   meta: {
     title: 'Coding lessons · Martín Campagnoli',
