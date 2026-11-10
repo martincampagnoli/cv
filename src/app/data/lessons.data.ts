@@ -3,7 +3,7 @@ import { CV } from './cv.data';
 
 export const LESSONS: Lessons = {
   eyebrow: 'Coding lessons · 1:1 · online',
-  headline: ['Learn to code', 'with a senior developer'],
+  headline: ['Learn to code'],
   intro:
     'Private online lessons for beginners and working developers. We go at your pace, on your goals and in real code: no slides, no recordings, one person who has shipped production frontends for more than ten years.',
   facts: [

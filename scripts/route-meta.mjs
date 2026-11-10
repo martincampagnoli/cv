@@ -46,7 +46,7 @@ for (const route of ROUTES) {
     `<meta property="og:image" content="${SITE}/assets/og/lessons.png" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
-    `<meta property="og:image:alt" content="Learn to code with a senior developer: 1:1 online coding lessons" />`,
+    `<meta property="og:image:alt" content="Learn to code: 1:1 online coding lessons" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<link rel="canonical" href="${url}" />`,
   ].join('\n    ');
