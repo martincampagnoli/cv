@@ -11,9 +11,10 @@
 
 /* --------------------------------------------------------- offer picker */
 
+// Always one row: the options share the width on phones instead of stacking,
+// so the picker reads as a switch rather than a list.
 .offers {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -24,8 +25,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  flex: 0 1 200px;
   height: auto;
-  min-width: 180px;
+  min-width: 0;
   margin: 0;
   padding: 12px 18px;
   border: 1px solid var(--line-strong);
@@ -160,5 +162,12 @@
     &:focus-visible {
       color: var(--ink);
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .offer {
+    flex: 1 1 0;
+    padding: 11px 14px;
   }
 }
