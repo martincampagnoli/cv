@@ -1,5 +1,7 @@
 import { Component, computed, input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Facet, Hero } from '../../models/cv.model';
+import { obfuscateEmail, openMail } from '../../util/email';
 
 /** One suspended particle. Generated once, then never recomputed — the values
  * are random, so producing them during change detection would make the field
@@ -30,6 +32,7 @@ const KEY_COLUMN = 9;
 
 @Component({
   selector: 'app-hero',
+  imports: [RouterLink],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
@@ -79,9 +82,7 @@ export class HeroSection {
    * out of the markup; the real address only gets assembled on click. */
   readonly emailDisplay = computed(() => {
     const email = this.hero().email;
-    if (!email) return null;
-    const [user, domain] = email.split('@');
-    return `${user} [at] ${domain.replace(/\./g, ' [dot] ')}`;
+    return email ? obfuscateEmail(email) : null;
   });
 
   setWorld(deep: boolean, lock = false): void {
@@ -108,7 +109,7 @@ export class HeroSection {
   openEmail(event: Event): void {
     event.preventDefault();
     const email = this.hero().email;
-    if (email) window.location.href = `mailto:${email}`;
+    if (email) openMail(email);
   }
 }
 

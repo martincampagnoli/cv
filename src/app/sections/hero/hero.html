@@ -71,9 +71,22 @@
     </nav>
   </div>
 
-  @if (emailDisplay(); as email) {
-    <a class="contact" href="#" (click)="openEmail($event)">{{ email }}</a>
-  }
+  <!-- Top-right corner: the contact address, then the lessons card right under
+       the address, so the two read as one group. -->
+  <div class="corner">
+    @if (emailDisplay(); as email) {
+      <a class="contact" href="#" (click)="openEmail($event)">{{ email }}</a>
+    }
+    @if (hero().teaser; as teaser) {
+      <a class="teaser" [class.is-muted]="deep()" [routerLink]="teaser.route">
+        <span class="teaser__eyebrow">{{ teaser.eyebrow }}</span>
+        <span class="teaser__title"
+          >{{ teaser.title }}
+          <span class="teaser__arrow" aria-hidden="true">→</span></span
+        >
+      </a>
+    }
+  </div>
 
   <div class="doc">
     <span class="doc__meta"

@@ -304,6 +304,69 @@ $mono: 'JetBrains Mono', monospace;
   opacity: 0.38;
 }
 
+/* ----------------------------------------------------------------- teaser */
+
+/* Quieter than the links: a hairline card with an accent edge, in the code
+ * background's mono voice, so it reads as an aside rather than a fifth button. */
+.teaser {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 12px 22px 13px 16px;
+  border: 1px solid rgba(13, 26, 33, 0.16);
+  border-left: 2px solid #0e7f86;
+  /* Opaque enough, with a blur, that the code background never reads
+   * through the card where they overlap (phones). */
+  background: rgba(246, 250, 251, 0.82);
+  backdrop-filter: blur(6px);
+  color: $ink;
+  text-decoration: none;
+  transition:
+    color 0.8s ease,
+    border-color 0.8s ease,
+    background-color 0.4s ease,
+    opacity 0.8s ease;
+}
+
+.teaser__eyebrow {
+  font-family: $mono;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #0e7f86;
+  transition: color 0.8s ease;
+}
+
+.teaser__title {
+  font-family: $sans;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.teaser__arrow {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.teaser:hover,
+.teaser:focus-visible {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(13, 26, 33, 0.3);
+  border-left-color: #0e7f86;
+}
+
+.teaser:hover .teaser__arrow,
+.teaser:focus-visible .teaser__arrow {
+  transform: translateX(4px);
+}
+
+.teaser.is-muted {
+  opacity: 0.38;
+}
+
 /* ------------------------------------------------------ deep-state inversions */
 
 .hero.is-deep .tag {
@@ -317,6 +380,17 @@ $mono: 'JetBrains Mono', monospace;
 .hero.is-deep .link {
   color: $foam;
   border-color: rgba(214, 247, 255, 0.5);
+}
+
+.hero.is-deep .teaser {
+  color: $foam;
+  background: rgba(2, 19, 30, 0.6);
+  border-color: rgba(214, 247, 255, 0.3);
+  border-left-color: $cyan;
+}
+
+.hero.is-deep .teaser__eyebrow {
+  color: $cyan;
 }
 
 .hero.is-deep .link:hover {
@@ -354,11 +428,18 @@ $mono: 'JetBrains Mono', monospace;
 $rail: clamp(24px, 4.2vw, 72px);
 $hair-height: clamp(72px, 10vw, 148px);
 
-.contact {
+.corner {
   position: absolute;
   top: clamp(26px, 4vw, 52px);
   right: $rail;
   z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.contact {
   font-family: $mono;
   font-size: clamp(10px, 0.86vw, 13px);
   letter-spacing: 0.04em;
@@ -502,10 +583,14 @@ $hair-height: clamp(72px, 10vw, 148px);
     gap: 6px;
   }
 
-  .contact {
-    /* Long addresses would otherwise run past the gutter on narrow screens. */
+  .corner {
     left: $gutter;
     right: $gutter;
+  }
+
+  .contact {
+    /* Long addresses would otherwise run past the gutter on narrow screens. */
+    max-width: 100%;
     text-align: right;
     overflow-wrap: anywhere;
   }

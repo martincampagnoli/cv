@@ -1,0 +1,160 @@
+@use './ui';
+
+/* Lessons frame + design tokens.
+ *
+ * Same "surface" world as the CV hero: pale water plate, ink type, Montserrat
+ * with JetBrains Mono for the code-flavoured details. The legacy Glint globals
+ * still style bare elements (h1 margins, ul bullets, a grey `button`), so every
+ * element used on these pages is styled explicitly through a class. px, not
+ * rem: the legacy root font-size is 10px and changes under 400px wide. */
+
+:host {
+  --ink: #0d1a21;
+  --ink-2: rgba(13, 26, 33, 0.72);
+  --ink-3: rgba(13, 26, 33, 0.5);
+  --line: rgba(13, 26, 33, 0.14);
+  --line-strong: rgba(13, 26, 33, 0.38);
+  --plate: #f6fafb;
+  --plate-2: #eaf2f5;
+  --card: #ffffff;
+  --accent: #0e7f86;
+  --accent-wash: rgba(79, 209, 197, 0.16);
+  --sans: 'Montserrat', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --gutter: clamp(16px, 5vw, 64px);
+  --max: 1120px;
+  --r: 10px;
+
+  display: block;
+  min-height: 100%;
+  background: linear-gradient(180deg, var(--plate) 0%, var(--plate-2) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.bar,
+.main,
+.foot {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.brand {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--ink);
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav__link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--ink);
+  }
+
+  // The page you are on: shown as such, not as a link that does nothing.
+  &.is-current {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+}
+
+.nav .is-current {
+  pointer-events: none;
+  cursor: default;
+}
+
+// On the booking page the solid button would only point back at itself.
+.nav .cta.is-current {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+.main {
+  flex: 1;
+}
+
+.foot {
+  padding-top: 40px;
+  padding-bottom: 32px;
+  border-top: 1px solid var(--line);
+  margin-top: 64px;
+  font-size: 13px;
+  color: var(--ink-3);
+  // The legacy theme centres bare `footer` elements.
+  text-align: left;
+}
+
+.foot__privacy {
+  margin: 0 0 12px;
+  max-width: 60ch;
+}
+
+.foot__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--ink);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    letter-spacing: 0.16em;
+    font-size: 11px;
+  }
+}
