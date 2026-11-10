@@ -28,7 +28,7 @@ export const CV: Cv = {
     ],
     teaser: {
       eyebrow: '// 1:1 coding lessons',
-      title: 'Want to learn to code?',
+      title: 'Want to learn how to code?',
       route: '/lessons',
     },
     surface: [
