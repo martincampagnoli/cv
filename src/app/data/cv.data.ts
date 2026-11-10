@@ -22,7 +22,7 @@ export const CV: Cv = {
       },
       {
         label: 'Frey Dive',
-        url: 'https://freydive.com',
+        url: 'https://freydive.app',
         world: 'deep',
       },
     ],
