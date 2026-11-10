@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { HeroSection } from './hero';
 import { CV } from '../../data/cv.data';
@@ -17,6 +18,7 @@ describe('HeroSection', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HeroSection],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeroSection);
@@ -182,6 +184,23 @@ describe('HeroSection', () => {
     expect(el.querySelector('.contact')).toBeNull();
     // The download block is unconditional and must survive.
     expect(el.querySelector('.doc__link')).not.toBeNull();
+  });
+
+  it('links the teaser card to its route and dims it in the deep world', async () => {
+    const card = () => el.querySelector<HTMLAnchorElement>('.teaser')!;
+    expect(card().getAttribute('href')).toBe(CV.hero.teaser!.route);
+    expect(card().textContent).toContain(CV.hero.teaser!.title);
+    expect(card().classList.contains('is-muted')).toBe(false);
+
+    halves()[1].click();
+    await settle();
+    expect(card().classList.contains('is-muted')).toBe(true);
+  });
+
+  it('renders no teaser card when none is configured', async () => {
+    fixture.componentRef.setInput('hero', { ...CV.hero, teaser: undefined });
+    await settle();
+    expect(el.querySelector('.teaser')).toBeNull();
   });
 
   it('builds a stable field of 32 motes', () => {

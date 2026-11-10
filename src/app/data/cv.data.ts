@@ -26,6 +26,11 @@ export const CV: Cv = {
         world: 'deep',
       },
     ],
+    teaser: {
+      eyebrow: '// 1:1 coding lessons',
+      title: 'Want to learn to code?',
+      route: '/lessons',
+    },
     surface: [
       { key: 'role', value: "'Senior Frontend Developer'" },
       { key: 'stack', value: "['Angular', 'TypeScript', 'Signals']" },

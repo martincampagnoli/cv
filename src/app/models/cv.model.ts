@@ -22,10 +22,21 @@ export interface CvFile {
   readonly pages: number;
 }
 
+/** A small card under the links that points somewhere on this site (an app
+ * route, not an external URL). It belongs to the surface world, so the deep
+ * state dims it like the surface links. */
+export interface Teaser {
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly route: string;
+}
+
 export interface Hero {
   readonly name: string;
   readonly tagline: readonly string[];
   readonly links: readonly SocialLink[];
+  /** Optional: no card is rendered without it. */
+  readonly teaser?: Teaser;
   readonly surface: readonly Facet[];
   readonly deep: readonly Facet[];
   /** Optional: the contact line is hidden entirely until an address is set,

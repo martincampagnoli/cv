@@ -69,6 +69,16 @@
         >
       }
     </nav>
+
+    @if (hero().teaser; as teaser) {
+      <a class="teaser" [class.is-muted]="deep()" [routerLink]="teaser.route">
+        <span class="teaser__eyebrow">{{ teaser.eyebrow }}</span>
+        <span class="teaser__title"
+          >{{ teaser.title }}
+          <span class="teaser__arrow" aria-hidden="true">→</span></span
+        >
+      </a>
+    }
   </div>
 
   @if (emailDisplay(); as email) {

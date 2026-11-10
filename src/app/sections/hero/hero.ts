@@ -1,4 +1,5 @@
 import { Component, computed, input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Facet, Hero } from '../../models/cv.model';
 import { obfuscateEmail, openMail } from '../../util/email';
 
@@ -31,6 +32,7 @@ const KEY_COLUMN = 9;
 
 @Component({
   selector: 'app-hero',
+  imports: [RouterLink],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
