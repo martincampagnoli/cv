@@ -35,12 +35,16 @@ export const LESSONS: Lessons = {
       body: 'Choose a free slot in the calendar. Your first booking is a free 20-minute intro call.',
     },
     {
-      title: 'I confirm it',
-      body: 'I check the request and confirm on WhatsApp or email, usually within a day, with your Google Meet link.',
+      title: 'I review it',
+      body: 'I check your request, usually within a day, and send you a Tikkie or PayPal payment link on WhatsApp or email.',
+    },
+    {
+      title: 'Pay to confirm',
+      body: 'Once the payment is in, the lesson is confirmed and you get the Google Meet link. The intro call is free, so it is confirmed straight away.',
     },
     {
       title: 'We code',
-      body: 'Join the Meet at the agreed time. Payment is a Tikkie or PayPal link, sent with the confirmation.',
+      body: 'We meet on Google Meet at the agreed time and get to work.',
     },
   ],
   offers: [
@@ -60,9 +64,9 @@ export const LESSONS: Lessons = {
     },
   ],
   policy: [
-    'Requests are confirmed by hand, so a booking is final only after my confirmation.',
+    'Requests are reviewed by hand, usually within a day.',
+    'Lessons are paid in advance by Tikkie or PayPal, and confirmed once the payment is in.',
     'Rescheduling is free up to 24 hours before the lesson. Cancelled lessons are still charged.',
-    'Payment by Tikkie or PayPal, sent with the confirmation.',
   ],
   faq: [
     {

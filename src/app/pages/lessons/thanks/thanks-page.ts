@@ -19,16 +19,16 @@ import { LESSONS_CONTENT } from '../lessons.token';
         } @else {
           Your slot is held for you.
         }
-        I'll confirm it by hand, usually within a day.
+        I'll review it by hand, usually within a day.
       </p>
       <ol class="next">
         <li>
-          <b>Check your email.</b> You'll get a copy of the request now, and the
-          confirmation with the Google Meet link once I accept it.
+          <b>Watch WhatsApp and email.</b> For a lesson, I'll send a payment
+          link (Tikkie or PayPal). The free intro call skips this step.
         </li>
         <li>
-          <b>Watch WhatsApp</b> if you left a number: that's where the
-          confirmation and the payment link (Tikkie or PayPal) usually arrive.
+          <b>Once it's paid, it's confirmed.</b> You'll get the confirmation
+          email with the Google Meet link, and we meet at the agreed time.
         </li>
         <li>
           <b>Need to change it?</b> Use the reschedule link in the email, free
