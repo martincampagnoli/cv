@@ -28,11 +28,11 @@ import { LESSONS_CONTENT } from '../lessons.token';
         </li>
         <li>
           <b>Watch WhatsApp</b> if you left a number: that's where the
-          confirmation and the Tikkie payment link usually arrive.
+          confirmation and the payment link (Tikkie or PayPal) usually arrive.
         </li>
         <li>
-          <b>Need to change it?</b> Use the reschedule or cancel link in the
-          email, free up to 24 hours before.
+          <b>Need to change it?</b> Use the reschedule link in the email, free
+          up to 24 hours before. Cancelled lessons are still charged.
         </li>
       </ol>
       <a class="cta" routerLink="/lessons">Back to lessons</a>

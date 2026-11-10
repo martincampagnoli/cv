@@ -40,7 +40,7 @@ export const LESSONS: Lessons = {
     },
     {
       title: 'We code',
-      body: 'Join the Meet at the agreed time. Payment is a Tikkie link, sent with the confirmation.',
+      body: 'Join the Meet at the agreed time. Payment is a Tikkie or PayPal link, sent with the confirmation.',
     },
   ],
   offers: [
@@ -61,8 +61,8 @@ export const LESSONS: Lessons = {
   ],
   policy: [
     'Requests are confirmed by hand, so a booking is final only after my confirmation.',
-    'Free cancellation or rescheduling up to 24 hours before the lesson.',
-    'Payment by Tikkie, sent with the confirmation.',
+    'Rescheduling is free up to 24 hours before the lesson. Cancelled lessons are still charged.',
+    'Payment by Tikkie or PayPal, sent with the confirmation.',
   ],
   faq: [
     {
