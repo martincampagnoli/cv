@@ -90,6 +90,27 @@
   &:focus-visible {
     color: var(--ink);
   }
+
+  // The page you are on: shown as such, not as a link that does nothing.
+  &.is-current {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+}
+
+.nav .is-current {
+  pointer-events: none;
+  cursor: default;
+}
+
+// On the booking page the solid button would only point back at itself.
+.nav .cta.is-current {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
 }
 
 .main {

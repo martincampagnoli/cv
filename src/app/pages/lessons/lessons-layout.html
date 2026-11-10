@@ -8,8 +8,21 @@
       Martín Campagnoli
     </a>
     <nav class="nav" aria-label="Lessons">
-      <a class="nav__link" routerLink="/lessons">Lessons</a>
-      <a class="cta cta--solid cta--sm" routerLink="/lessons/book">Book</a>
+      <a
+        class="nav__link"
+        routerLink="/lessons"
+        routerLinkActive="is-current"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ariaCurrentWhenActive="page"
+        >Lessons</a
+      >
+      <a
+        class="cta cta--solid cta--sm"
+        routerLink="/lessons/book"
+        routerLinkActive="is-current"
+        ariaCurrentWhenActive="page"
+        >Book</a
+      >
     </nav>
   </header>
 

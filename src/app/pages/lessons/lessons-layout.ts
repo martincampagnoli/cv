@@ -1,5 +1,5 @@
 import { Component, computed } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LESSONS } from '../../data/lessons.data';
 import { obfuscateEmail, openMail } from '../../util/email';
 
@@ -8,7 +8,7 @@ import { obfuscateEmail, openMail } from '../../util/email';
  * child pages through Angular's style encapsulation. */
 @Component({
   selector: 'app-lessons-layout',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './lessons-layout.html',
   styleUrl: './lessons-layout.scss',
 })

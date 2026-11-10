@@ -46,6 +46,22 @@ describe('App routes', () => {
     expect(text()).toContain('your request is in');
   });
 
+  it('marks the header link of the page you are on as current', async () => {
+    const current = () =>
+      [...root().querySelectorAll('.nav [aria-current="page"]')].map((a) =>
+        a.textContent?.trim(),
+      );
+
+    await harness.navigateByUrl('/lessons');
+    expect(current()).toEqual(['Lessons']);
+
+    await harness.navigateByUrl('/lessons/book');
+    expect(current()).toEqual(['Book']);
+
+    await harness.navigateByUrl('/lessons/thanks');
+    expect(current()).toEqual([]);
+  });
+
   it('sends unknown paths back to the CV', async () => {
     await harness.navigateByUrl('/nope');
     expect(TestBed.inject(Router).url).toBe('/');
